@@ -1,15 +1,14 @@
 package com.imagepicker.utils;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
+import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.content.ContentUris;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
@@ -17,6 +16,7 @@ import android.support.v4.content.FileProvider;
 import java.io.File;
 
 public class RealPathUtil {
+	private static final String PROVIDER_SUFFIX = ".rn.picker";
 
 	public static @Nullable Uri compatUriFromFile(@NonNull final Context context,
 												  @NonNull final File file) {
@@ -26,7 +26,7 @@ public class RealPathUtil {
 		}
 		else {
 			final String packageName = context.getApplicationContext().getPackageName();
-			final String authority =  new StringBuilder(packageName).append(".provider").toString();
+			final String authority =  new StringBuilder(packageName).append(PROVIDER_SUFFIX).toString();
 			try {
 				result = FileProvider.getUriForFile(context, authority, file);
 			}
@@ -183,7 +183,7 @@ public class RealPathUtil {
 	public static boolean isFileProviderUri(@NonNull final Context context,
 	                                        @NonNull final Uri uri) {
 		final String packageName = context.getPackageName();
-		final String authority = new StringBuilder(packageName).append(".provider").toString();
+		final String authority = new StringBuilder(packageName).append(PROVIDER_SUFFIX).toString();
 		return authority.equals(uri.getAuthority());
 	}
 
