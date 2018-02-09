@@ -14,7 +14,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-rc1'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     }
@@ -24,12 +24,12 @@ apply plugin: 'com.android.library'
 apply from: 'publish.gradle'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName computeVersionName()
     }
@@ -40,19 +40,22 @@ android {
 
 repositories {
     mavenCentral()
+    google()
     maven { url "https://dl.bintray.com/minyushov/android" }
 }
 
 dependencies {
-    implementation "com.facebook.react:react-native:0.49.3"
-    
-    testCompile "junit:junit:4.12"
-    testCompile "org.assertj:assertj-core:2.6.0"
-    testCompile "org.robolectric:robolectric:3.3.2"
+    implementation "com.facebook.react:react-native:0.53.0"
 
-    testCompile "org.easytesting:fest-assert-core:${FEST_ASSERT_CORE_VERSION}"
-    testCompile "org.powermock:powermock-api-mockito:${POWERMOCK_VERSION}"
-    testCompile "org.powermock:powermock-module-junit4-rule:${POWERMOCK_VERSION}"
-    testCompile "org.powermock:powermock-classloading-xstream:${POWERMOCK_VERSION}"
-    testCompile "org.mockito:mockito-core:${MOCKITO_CORE_VERSION}"
+    implementation "com.android.support:appcompat-v7:27.0.2"
+    
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.assertj:assertj-core:2.6.0"
+    testImplementation "org.robolectric:robolectric:3.3.2"
+
+    testImplementation "org.easytesting:fest-assert-core:${FEST_ASSERT_CORE_VERSION}"
+    testImplementation "org.powermock:powermock-api-mockito:${POWERMOCK_VERSION}"
+    testImplementation "org.powermock:powermock-module-junit4-rule:${POWERMOCK_VERSION}"
+    testImplementation "org.powermock:powermock-classloading-xstream:${POWERMOCK_VERSION}"
+    testImplementation "org.mockito:mockito-core:${MOCKITO_CORE_VERSION}"
 }
