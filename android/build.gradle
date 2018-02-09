@@ -11,17 +11,17 @@ buildscript {
     repositories {
         jcenter()
         google()
+        maven { url 'https://dl.bintray.com/minyushov/gradle' }
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath "com.minyushov.gradle:bintray:1.0.1"
     }
 }
 
 apply plugin: 'com.android.library'
-apply from: 'publish.gradle'
+apply plugin: 'com.minyushov.bintray'
 
 android {
     compileSdkVersion 27
@@ -58,4 +58,15 @@ dependencies {
     testImplementation "org.powermock:powermock-module-junit4-rule:${POWERMOCK_VERSION}"
     testImplementation "org.powermock:powermock-classloading-xstream:${POWERMOCK_VERSION}"
     testImplementation "org.mockito:mockito-core:${MOCKITO_CORE_VERSION}"
+}
+
+bintrayUpload {
+    dryRun = false
+    repo = "android"
+    groupId = "com.minyushov.android"
+    artifactId = "react-native-image-picker"
+    version = "0.26.7.1"
+    vcsUrl = "https://github.com/minyushov/react-native-image-picker.git"
+    license = "The MIT License (MIT)"
+    docs = false
 }
