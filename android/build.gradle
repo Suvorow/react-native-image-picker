@@ -25,7 +25,7 @@ android {
 }
 
 repositories {
-    mavenCentral()
+    jcenter()
     google()
     maven { url "https://dl.bintray.com/minyushov/android" }
 }
