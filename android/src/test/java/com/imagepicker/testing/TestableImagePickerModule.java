@@ -8,9 +8,6 @@ import android.support.annotation.StyleRes;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.imagepicker.ImagePickerModule;
-import com.imagepicker.ResponseHelper;
-
-import java.lang.reflect.Field;
 
 /**
  * Created by rusfearuth on 10.04.17.

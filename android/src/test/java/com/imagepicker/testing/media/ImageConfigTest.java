@@ -1,16 +1,17 @@
 package com.imagepicker.testing.media;
 
-import com.facebook.react.bridge.JavaOnlyMap;
-import com.facebook.react.bridge.WritableMap;
-import com.imagepicker.media.ImageConfig;
+import java.io.File;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 
-import java.io.File;
+import com.facebook.react.bridge.JavaOnlyMap;
+import com.facebook.react.bridge.WritableMap;
+import com.imagepicker.media.ImageConfig;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
@@ -58,8 +59,8 @@ public class ImageConfigTest
 
         updated = original.withSaveToCameraRoll(true);
 
-        assertEquals("Original saveToCameraRoll", false, original.saveToCameraRoll);
-        assertEquals("Updated saveToCameraRoll", true, updated.saveToCameraRoll);
+        assertFalse("Original saveToCameraRoll", original.saveToCameraRoll);
+        assertTrue("Updated saveToCameraRoll", updated.saveToCameraRoll);
     }
 
     @Test
@@ -80,13 +81,13 @@ public class ImageConfigTest
     {
         ImageConfig config = new ImageConfig(null, null, 800, 600, 100, 90, false);
 
-        assertEquals("Image wont be resized", true, config.useOriginal(100, 100, 90));
-        assertEquals("Image will be resized because of rotation", false, config.useOriginal(100, 100, 80));
-        assertEquals("Image will be resized because of initial width", false, config.useOriginal(1000, 100, 80));
-        assertEquals("Image will be resized because of initial height", false, config.useOriginal(100, 1000, 80));
+        assertTrue("Image wont be resized", config.useOriginal(100, 100, 90));
+        assertFalse("Image will be resized because of rotation", config.useOriginal(100, 100, 80));
+        assertFalse("Image will be resized because of initial width", config.useOriginal(1000, 100, 80));
+        assertFalse("Image will be resized because of initial height", config.useOriginal(100, 1000, 80));
 
         ImageConfig qualityIsLow = config.withQuality(90);
-        assertEquals("Image will be resized because of quality is low", false, qualityIsLow.useOriginal(100, 100, 90));
+        assertFalse("Image will be resized because of quality is low", qualityIsLow.useOriginal(100, 100, 90));
     }
 
     @Test
