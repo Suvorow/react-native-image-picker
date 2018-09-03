@@ -1,4 +1,7 @@
 buildscript {
+    ext {
+        powermockVersion = "2.0.0-beta.5"
+    }
     repositories {
         jcenter()
         google()
@@ -6,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0-beta04'
+        classpath 'com.android.tools.build:gradle:3.2.0-rc02'
         classpath "com.minyushov.gradle:bintray:1.1.0"
     }
 }
@@ -16,7 +19,7 @@ apply plugin: 'com.minyushov.bintray'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "28.0.0"
+    buildToolsVersion "28.0.2"
 
     defaultConfig {
         minSdkVersion 16
@@ -31,19 +34,19 @@ repositories {
 }
 
 dependencies {
-    implementation "com.facebook.react:react-native:0.56.0"
+    implementation "com.facebook.react:react-native:0.49.3"
 
-    implementation "com.android.support:appcompat-v7:28.0.0-alpha3"
+    implementation "com.android.support:appcompat-v7:28.0.0-rc02"
     
     testImplementation "junit:junit:4.12"
-    testImplementation "org.assertj:assertj-core:2.6.0"
+    testImplementation "org.assertj:assertj-core:3.10.0"
     testImplementation "org.robolectric:robolectric:3.8"
 
     testImplementation "org.easytesting:fest-assert-core:2.0M10"
-    testImplementation "org.powermock:powermock-api-mockito:1.6.2"
-    testImplementation "org.powermock:powermock-module-junit4-rule:1.6.2"
-    testImplementation "org.powermock:powermock-classloading-xstream:1.6.2"
-    testImplementation "org.mockito:mockito-core:2.19.1"
+    testImplementation "org.powermock:powermock-api-mockito2:$powermockVersion"
+    testImplementation "org.powermock:powermock-module-junit4-rule:$powermockVersion"
+    testImplementation "org.powermock:powermock-classloading-xstream:$powermockVersion"
+    testImplementation "org.mockito:mockito-core:2.21.0"
 }
 
 bintrayUpload {
@@ -51,7 +54,7 @@ bintrayUpload {
     repo = "android"
     groupId = "com.minyushov.android"
     artifactId = "react-native-image-picker"
-    version = "0.26.10"
+    version = "0.26.7.1"
     vcsUrl = "https://github.com/minyushov/react-native-image-picker.git"
     license = "The MIT License (MIT)"
     docs = false
