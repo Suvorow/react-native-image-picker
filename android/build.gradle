@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        powermockVersion = "2.0.0-beta.5"
+        powermockVersion = "1.6.2"
     }
     repositories {
         google()
@@ -18,19 +18,13 @@ buildscript {
 apply plugin: 'com.android.library'
 apply plugin: 'com.minyushov.bintray'
 
-def DEFAULT_COMPILE_SDK_VERSION = 28
-def DEFAULT_BUILD_TOOLS_VERSION = "28.0.3"
-def DEFAULT_TARGET_SDK_VERSION = 28
-
 android {
-    compileSdkVersion rootProject.hasProperty('compileSdkVersion') ? rootProject.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
-    buildToolsVersion rootProject.hasProperty('buildToolsVersion') ? rootProject.buildToolsVersion : DEFAULT_BUILD_TOOLS_VERSION
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion rootProject.hasProperty('targetSdkVersion') ? rootProject.targetSdkVersion : DEFAULT_TARGET_SDK_VERSION
-        versionCode 1
-        versionName computeVersionName()
+        targetSdkVersion 28
     }
     lintOptions {
         abortOnError false
@@ -46,15 +40,15 @@ repositories {
 dependencies {
     implementation "com.facebook.react:react-native:0.59.1"
 
-    testImplementation "junit:junit:4.10"
-    testImplementation "org.assertj:assertj-core:1.7.0"
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.assertj:assertj-core:2.6.0"
     testImplementation "org.robolectric:robolectric:3.3.2"
 
-    testImplementation "org.easytesting:fest-assert-core:${FEST_ASSERT_CORE_VERSION}"
-    testImplementation "org.powermock:powermock-api-mockito:${POWERMOCK_VERSION}"
-    testImplementation "org.powermock:powermock-module-junit4-rule:${POWERMOCK_VERSION}"
-    testImplementation "org.powermock:powermock-classloading-xstream:${POWERMOCK_VERSION}"
-    testImplementation "org.mockito:mockito-core:${MOCKITO_CORE_VERSION}"
+    testImplementation "org.easytesting:fest-assert-core:2.0M10"
+    testImplementation "org.powermock:powermock-api-mockito:$powermockVersion"
+    testImplementation "org.powermock:powermock-module-junit4-rule:$powermockVersion"
+    testImplementation "org.powermock:powermock-classloading-xstream:$powermockVersion"
+    testImplementation "org.mockito:mockito-core:2.23.4"
 }
 
 bintrayUpload {
@@ -62,7 +56,7 @@ bintrayUpload {
     repo = "android"
     groupId = "com.minyushov.android"
     artifactId = "react-native-image-picker"
-    version = "0.26.7.1"
+    version = "0.28.0"
     vcsUrl = "https://github.com/minyushov/react-native-image-picker.git"
     license = "The MIT License (MIT)"
     docs = false

@@ -1,26 +1,26 @@
 package com.imagepicker.testing.media;
 
-import java.io.File;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-
-import com.facebook.react.bridge.JavaOnlyMap;
-import com.facebook.react.bridge.WritableMap;
-import com.imagepicker.media.ImageConfig;
-
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
 
+import com.facebook.react.bridge.JavaOnlyMap;
+import com.facebook.react.bridge.WritableMap;
+import com.imagepicker.media.ImageConfig;
+import java.io.File;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
+
 /**
  * Created by rusfearuth on 11.04.17.
  */
 
 @RunWith(RobolectricTestRunner.class)
+@Config(manifest=Config.NONE)
 public class ImageConfigTest
 {
     @Test
