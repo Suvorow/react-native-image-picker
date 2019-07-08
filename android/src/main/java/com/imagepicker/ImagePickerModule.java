@@ -431,6 +431,13 @@ public class ImagePickerModule extends ReactContextBaseJavaModule
         return;
     }
 
+    if (data == null) {
+      removeUselessFiles(requestCode, imageConfig);
+      responseHelper.invokeError(callback, "resultCode is RESULT_OK, but intent data is null");
+      callback = null;
+      return;
+    }
+
     final ReadExifResult result = readExifInterface(responseHelper, imageConfig);
 
     if (result.error != null)
